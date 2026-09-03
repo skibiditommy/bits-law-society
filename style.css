@@ -320,7 +320,7 @@ ul {
 ========================================= */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: var(--spacing-lg);
     margin-top: var(--spacing-lg);
 }
@@ -1092,15 +1092,127 @@ ul {
 }
 
 /* =========================================
+   PODCAST SECTION
+========================================= */
+.podcast-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+    margin-top: var(--spacing-lg);
+}
+
+.podcast-player {
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+}
+
+.video-responsive-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    background-color: #000;
+}
+
+.video-responsive-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.podcast-player-meta {
+    padding: var(--spacing-lg);
+}
+
+.podcast-player-meta h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+.podcast-player-meta p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.podcast-episodes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.podcast-ep-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.podcast-ep-card:hover,
+.podcast-ep-card.active {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    background-color: rgba(15, 32, 75, 0.03);
+}
+
+.ep-thumb {
+    width: 70px;
+    height: 50px;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+.ep-thumb span {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+
+.ep-info h4 {
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+    color: var(--color-primary);
+}
+
+.ep-info p {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+/* =========================================
    RESPONSIVE
 ========================================= */
 @media (max-width: 992px) {
     .hero-title { font-size: 3rem; }
-    .engagement-layout { grid-template-columns: 1fr; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .team-grid { grid-template-columns: repeat(2, 1fr); }
-    .admin-dashboard { grid-template-columns: 1fr; }
-    .recent-activity { grid-column: span 1; }
+    .podcast-layout { grid-template-columns: 1fr; }
     .footer-container { grid-template-columns: 1fr 1fr; }
 }
 
@@ -1109,7 +1221,7 @@ ul {
     .about-grid { grid-template-columns: 1fr; }
     .team-grid { grid-template-columns: 1fr; }
     .articles-grid { grid-template-columns: 1fr; }
-    .issues-grid { grid-template-columns: 1fr; }
+    .tracker-grid { grid-template-columns: 1fr; }
     .modal-content { width: 95%; padding: 2rem; margin: 10% auto; }
     .footer-container { grid-template-columns: 1fr; }
     .hero-title { font-size: 2.5rem; }

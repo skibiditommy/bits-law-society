@@ -13,8 +13,7 @@
     <!-- Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js no longer needed -->
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
@@ -31,10 +30,10 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#promise-tracker">Tracker</a></li>
+                <li><a href="#podcast">Podcast</a></li>
                 <li><a href="#publications">Publications</a></li>
-                <li><a href="#concerns">Submit Concern</a></li>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#admin-panel" class="btn btn-outline-sm">Admin Demo</a></li>
             </ul>
         </div>
     </nav>
@@ -49,7 +48,7 @@
                     <p class="hero-subtitle">The Centralized Platform for Legal Publications and Student Representation.</p>
                     <div class="hero-actions">
                         <a href="#publications" class="btn btn-primary">Explore Publications</a>
-                        <a href="#concerns" class="btn btn-secondary">Raise a Concern</a>
+                        <a href="#podcast" class="btn btn-secondary">Watch Podcast</a>
                     </div>
                 </div>
             </div>
@@ -93,27 +92,33 @@
                 <div class="team-grid">
                     <div class="team-card">
                         <div class="team-avatar"><i class="ri-user-star-line"></i></div>
-                        <h3 class="team-name" contenteditable="true">Vidyesh Panyam</h3>
+                        <h3 class="team-name" contenteditable="true">Vaishnavi Duggaraju</h3>
                         <div class="team-role">President</div>
                         <p class="team-desc" contenteditable="true">Oversees the strategic direction of the Law Society and coordinates with campus administration.</p>
                     </div>
                     <div class="team-card">
                         <div class="team-avatar"><i class="ri-user-settings-line"></i></div>
-                        <h3 class="team-name" contenteditable="true">Siddhesh Rakecha</h3>
+                        <h3 class="team-name" contenteditable="true">Harshith Bohini</h3>
                         <div class="team-role">Secretary</div>
                         <p class="team-desc" contenteditable="true">Manages internal operations, official communications, and maintains the society ledger.</p>
                     </div>
                     <div class="team-card">
                         <div class="team-avatar"><i class="ri-calendar-event-line"></i></div>
-                        <h3 class="team-name" contenteditable="true">Aarya Deshpande</h3>
+                        <h3 class="team-name" contenteditable="true">Shreyash Kumar Tiwari</h3>
                         <div class="team-role">Events Coordinator</div>
                         <p class="team-desc" contenteditable="true">Plans and executes guest lectures, debates, and general body meetings throughout the semester.</p>
                     </div>
                     <div class="team-card">
                         <div class="team-avatar"><i class="ri-megaphone-line"></i></div>
-                        <h3 class="team-name" contenteditable="true">Vaishnavi Duggaraju</h3>
+                        <h3 class="team-name" contenteditable="true">Rama Neekhara</h3>
                         <div class="team-role">Social Media Head</div>
                         <p class="team-desc" contenteditable="true">Handles the digital presence, outreach campaigns, and publication announcements.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar"><i class="ri-clapperboard-line"></i></div>
+                        <h3 class="team-name" contenteditable="true">Ashrith Sai</h3>
+                        <div class="team-role">Videography & Design Head</div>
+                        <p class="team-desc" contenteditable="true">Leads visual media production, graphic design, and video content for all society events and podcasts.</p>
                     </div>
                 </div>
             </div>
@@ -286,136 +291,42 @@
             </div>
         </section>
 
-        <!-- 4. General Body Engagement Portal -->
-        <section id="concerns" class="section bg-light">
+        <!-- BitsNOHYD Podcast -->
+        <section id="podcast" class="section bg-light">
             <div class="container">
-                <div class="engagement-layout">
-                    <div class="engagement-info">
-                        <h2 class="section-title">Submit a Concern</h2>
-                        <div class="divider"></div>
-                        <p>Use this portal to formalize structural, academic, or administrative concerns. Submissions are reviewed by the Law Society for representation in General Body Meetings.</p>
-                        
-                        <!-- 6. How Representation Works -->
-                        <div class="workflow">
-                            <h4 class="workflow-title">Representation Workflow</h4>
-                            <div class="workflow-steps">
-                                <div class="step">
-                                    <div class="step-icon"><i class="ri-edit-box-line"></i></div>
-                                    <div class="step-text">Student Submission</div>
-                                </div>
-                                <div class="step-line"></div>
-                                <div class="step">
-                                    <div class="step-icon"><i class="ri-database-2-line"></i></div>
-                                    <div class="step-text">Data Aggregation</div>
-                                </div>
-                                <div class="step-line"></div>
-                                <div class="step">
-                                    <div class="step-icon"><i class="ri-search-eye-line"></i></div>
-                                    <div class="step-text">Law Society Review</div>
-                                </div>
-                                <div class="step-line"></div>
-                                <div class="step">
-                                    <div class="step-icon"><i class="ri-presentation-line"></i></div>
-                                    <div class="step-text">GBM Representation</div>
-                                </div>
-                            </div>
+                <div class="section-header text-center">
+                    <h2 class="section-title">BitsNOHYD Podcast</h2>
+                    <div class="divider"></div>
+                    <p class="section-desc">Interviews with student leaders, club heads, and prominent figures at BITS Hyderabad.</p>
+                </div>
+
+                <div class="podcast-layout">
+                    <!-- Featured Video Player -->
+                    <div class="podcast-player">
+                        <div class="video-responsive-wrapper">
+                            <iframe id="main-podcast-iframe" src="https://www.youtube.com/embed/videoseries?list=PL4Gr5tOAPttBOrfu-O-Mvdc24k2fD49nN" title="BitsNOHYD Podcast" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="podcast-player-meta">
+                            <h3 id="podcast-video-title"><i class="ri-movie-line"></i> BitsNOHYD Podcast Playlist</h3>
+                            <p id="podcast-video-desc">Watch interviews and discussions featuring student representatives, club presidents, and campus leaders from BITS Pilani Hyderabad Campus.</p>
+                            <a href="https://www.youtube.com/@BitsNOHYD" target="_blank" class="btn btn-secondary"><i class="ri-youtube-fill"></i> Visit @BitsNOHYD Channel</a>
                         </div>
                     </div>
 
-                    <div class="engagement-form-wrapper">
-                        <form id="concern-form" class="concern-form">
-                            <div class="form-group">
-                                <label for="name">Name (Optional)</label>
-                                <input type="text" id="name" placeholder="Enter your full name">
-                            </div>
-                            <div class="form-group">
-                                <label for="student-id">Student ID <span class="required">*</span></label>
-                                <input type="text" id="student-id" placeholder="e.g., 2022A7PS1234H" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="category">Category <span class="required">*</span></label>
-                                <select id="category" required>
-                                    <option value="" disabled selected>Select Category</option>
-                                    <option value="Academics">Academics</option>
-                                    <option value="Infrastructure">Infrastructure</option>
-                                    <option value="Hostel">Hostel</option>
-                                    <option value="Administration">Administration</option>
-                                    <option value="Student Welfare">Student Welfare</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description <span class="required">*</span></label>
-                                <textarea id="description" rows="5" placeholder="Detail the issue structurally..." required></textarea>
-                            </div>
-                            <div class="form-checkbox">
-                                <input type="checkbox" id="anonymous">
-                                <label for="anonymous">Submit Anonymously (Identity shielded from public logs)</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Submit to Ledger</button>
-                            <div id="form-notification" class="notification hidden"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Student Issues Dashboard -->
-        <section id="dashboard" class="section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="section-title">Public Issue Dashboard</h2>
-                    <div class="divider"></div>
-                    <p class="section-desc">Anonymized logs of ongoing concerns and historical resolutions.</p>
-                </div>
-
-                <!-- 7. Impact Section (Stats inside Dashboard) -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">420+</div>
-                        <div class="stat-label">Student Inputs</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">69</div>
-                        <div class="stat-label">Issues Presented</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">67</div>
-                        <div class="stat-label">Issues Resolved</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">97%</div>
-                        <div class="stat-label">Engagement Satisfaction</div>
-                    </div>
-                </div>
-
-                <div class="issues-grid" id="issues-container">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- 8. Admin Preview Panel -->
-        <section id="admin-panel" class="section bg-dark">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title text-white">Admin Analytics (Demo)</h2>
-                    <div class="divider bg-gold"></div>
-                </div>
-                
-                <div class="admin-dashboard">
-                    <div class="admin-card chart-container">
-                        <h3 class="admin-card-title">Concerns by Category</h3>
-                        <canvas id="categoryChart"></canvas>
-                    </div>
-                    <div class="admin-card chart-container">
-                        <h3 class="admin-card-title">Submission Timeline (Last 30 Days)</h3>
-                        <canvas id="timelineChart"></canvas>
-                    </div>
-                    <div class="admin-card recent-activity">
-                        <h3 class="admin-card-title">Recent Submissions (Local Storage)</h3>
-                        <ul class="activity-list" id="admin-activity-list">
-                            <!-- Populated by JS -->
-                        </ul>
+                    <!-- Episode Sidebar -->
+                    <div class="podcast-episodes">
+                        <div class="podcast-ep-card active" data-video-id="videoseries?list=PL4Gr5tOAPttBOrfu-O-Mvdc24k2fD49nN" data-title="BitsNOHYD Official Channel Playlist" data-desc="Complete collection of podcast episodes, campus talks, and interviews.">
+                            <div class="ep-thumb"><i class="ri-play-circle-fill"></i><span>PLAYLIST</span></div>
+                            <div class="ep-info"><h4>Full Playlist</h4><p>All Episodes &bull; BITS Hyderabad</p></div>
+                        </div>
+                        <div class="podcast-ep-card" data-video-id="L_LUpnjgPso" data-title="Episode 1 — Campus Conversations" data-desc="An engaging conversation about student life, clubs, and the culture at BITS Hyderabad.">
+                            <div class="ep-thumb"><i class="ri-film-line"></i><span>EP 01</span></div>
+                            <div class="ep-info"><h4>Campus Conversations</h4><p>Episode 1 &bull; Student Life</p></div>
+                        </div>
+                        <div class="podcast-ep-card" data-video-id="jNQXAC9IVRw" data-title="Episode 2 — Behind the Scenes" data-desc="A look behind the scenes of campus events, fests, and student governance.">
+                            <div class="ep-thumb"><i class="ri-film-line"></i><span>EP 02</span></div>
+                            <div class="ep-info"><h4>Behind the Scenes</h4><p>Episode 2 &bull; Campus Events</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -436,8 +347,10 @@
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#promise-tracker">Promise Tracker</a></li>
+                    <li><a href="#podcast">BitsNOHYD Podcast</a></li>
                     <li><a href="#publications">Publications</a></li>
-                    <li><a href="#concerns">Submit Concern</a></li>
                 </ul>
             </div>
             <div class="footer-contact">

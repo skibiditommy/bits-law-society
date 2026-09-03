@@ -58,12 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    const mockIssues = [
-        { id: "ISS-2026-001", category: "Academics", status: "Under Review", desc: "Clash between elective mid-semester examinations for third-year students." },
-        { id: "ISS-2026-002", category: "Infrastructure", status: "Resolved", desc: "Inadequate lighting in the pathway between the Tandoor and the Campus." },
-        { id: "ISS-2026-003", category: "Hostel", status: "Under Review", desc: "Broken toilets in the old hostels." },
-        { id: "ISS-2026-004", category: "Administration", status: "Resolved", desc: "Bro Ts Mess food tastes ass." }
-    ];
 
     // --- DOM Elements ---
     const articlesContainer = document.getElementById('articles-container');
@@ -72,12 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const modal = document.getElementById('article-modal');
     const modalClose = document.querySelector('.modal-close');
-    
-    const concernForm = document.getElementById('concern-form');
-    const formNotification = document.getElementById('form-notification');
-    
-    const issuesContainer = document.getElementById('issues-container');
-    const adminActivityList = document.getElementById('admin-activity-list');
 
     // --- 1. Render Articles ---
     function renderArticles(filterText = '', filterCat = 'all') {
@@ -127,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-body').innerHTML = article.content;
         
         modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
     }
 
     modalClose.addEventListener('click', () => {
@@ -142,187 +130,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 4. Render Public Dashboard Issues ---
-    function renderPublicIssues() {
-        issuesContainer.innerHTML = '';
-        mockIssues.forEach(issue => {
-            const statusClass = issue.status === 'Resolved' ? 'status-resolved' : 'status-review';
-            const card = document.createElement('div');
-            card.className = 'issue-card';
-            card.innerHTML = `
-                <div class="issue-header">
-                    <span class="issue-tag">${issue.category}</span>
-                    <span class="issue-status ${statusClass}">${issue.status}</span>
-                </div>
-                <div class="issue-id">${issue.id}</div>
-                <p class="issue-desc">${issue.desc}</p>
-            `;
-            issuesContainer.appendChild(card);
+    // --- 4. Podcast Episode Switcher ---
+    const podcastIframe = document.getElementById('main-podcast-iframe');
+    const podcastTitle = document.getElementById('podcast-video-title');
+    const podcastDesc = document.getElementById('podcast-video-desc');
+    const episodeCards = document.querySelectorAll('.podcast-ep-card');
+
+    episodeCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Remove active from all, add to clicked
+            episodeCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            const videoId = card.getAttribute('data-video-id');
+            const title = card.getAttribute('data-title');
+            const desc = card.getAttribute('data-desc');
+
+            if (podcastIframe) {
+                podcastIframe.src = `https://www.youtube.com/embed/${videoId}`;
+            }
+            if (podcastTitle) {
+                podcastTitle.innerHTML = `<i class="ri-movie-line"></i> ${title}`;
+            }
+            if (podcastDesc) {
+                podcastDesc.textContent = desc;
+            }
         });
-    }
-
-    // --- 5. Handle Form Submission & Local Storage ---
-    concernForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const nameVal = document.getElementById('name').value;
-        const idVal = document.getElementById('student-id').value;
-        const catVal = document.getElementById('category').value;
-        const descVal = document.getElementById('description').value;
-        const anonVal = document.getElementById('anonymous').checked;
-
-        const newSubmission = {
-            id: `SUB-${Date.now().toString().slice(-6)}`,
-            name: anonVal ? 'Anonymous' : (nameVal || 'Student'),
-            studentId: anonVal ? 'Hidden' : idVal,
-            category: catVal,
-            description: descVal,
-            timestamp: new Date().toLocaleString()
-        };
-
-        // Save to local storage
-        let submissions = JSON.parse(localStorage.getItem('lawSocietySubmissions') || '[]');
-        submissions.unshift(newSubmission); // Add to top
-        localStorage.setItem('lawSocietySubmissions', JSON.stringify(submissions));
-
-        // Show Notification
-        formNotification.textContent = `Success: Concern ${newSubmission.id} registered in ledger.`;
-        formNotification.className = 'notification success';
-        
-        concernForm.reset();
-        
-        // Update Admin Panel
-        renderAdminActivity();
-        updateAdminCharts();
-
-        setTimeout(() => {
-            formNotification.className = 'notification hidden';
-        }, 5000);
     });
-
-    // --- 6. Admin Panel Setup ---
-    let categoryChartInstance = null;
-    let timelineChartInstance = null;
-
-    function renderAdminActivity() {
-        adminActivityList.innerHTML = '';
-        const submissions = JSON.parse(localStorage.getItem('lawSocietySubmissions') || '[]');
-        
-        if (submissions.length === 0) {
-            adminActivityList.innerHTML = '<li class="activity-item"><span class="act-desc">No recent submissions found in local storage.</span></li>';
-            return;
-        }
-
-        // Show top 5 recent
-        submissions.slice(0, 5).forEach(sub => {
-            const li = document.createElement('li');
-            li.className = 'activity-item';
-            li.innerHTML = `
-                <div>
-                    <span class="act-cat">[${sub.category}]</span> 
-                    <span class="act-desc">${sub.description.substring(0, 40)}...</span>
-                </div>
-                <div class="act-time">${sub.timestamp.split(',')[0]}</div>
-            `;
-            adminActivityList.appendChild(li);
-        });
-    }
-
-    function updateAdminCharts() {
-        const submissions = JSON.parse(localStorage.getItem('lawSocietySubmissions') || '[]');
-        
-        // Base mock data + local storage data
-        const catCounts = {
-            'Academics': 45,
-            'Infrastructure': 30,
-            'Hostel': 25,
-            'Administration': 20,
-            'Student Welfare': 30
-        };
-
-        submissions.forEach(sub => {
-            if(catCounts[sub.category] !== undefined) {
-                catCounts[sub.category]++;
-            }
-        });
-
-        // Category Chart
-        const ctxCat = document.getElementById('categoryChart');
-        if (categoryChartInstance) categoryChartInstance.destroy();
-        
-        categoryChartInstance = new Chart(ctxCat, {
-            type: 'doughnut',
-            data: {
-                labels: Object.keys(catCounts),
-                datasets: [{
-                    data: Object.values(catCounts),
-                    backgroundColor: [
-                        '#0F204B', '#1A3673', '#D4AF37', '#E8C550', '#6C757D'
-                    ],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'right', labels: { color: '#fff' } }
-                }
-            }
-        });
-
-        // Timeline Chart (Mocked trend + recent additions)
-        const ctxTime = document.getElementById('timelineChart');
-        if (timelineChartInstance) timelineChartInstance.destroy();
-
-        // Generate mock last 7 days labels
-        const labels = [];
-        const data = [5, 8, 3, 12, 7, 4, 6]; 
-        // Add +1 to today's count for every local storage submission
-        data[6] += submissions.length;
-
-        for (let i = 6; i >= 0; i--) {
-            const d = new Date();
-            d.setDate(d.getDate() - i);
-            labels.push(d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }));
-        }
-
-        timelineChartInstance = new Chart(ctxTime, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Submissions',
-                    data: data,
-                    borderColor: '#D4AF37',
-                    backgroundColor: 'rgba(212, 175, 55, 0.2)',
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: '#aaa' } },
-                    x: { grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: '#aaa' } }
-                },
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        });
-    }
 
     // --- Initialize ---
     renderArticles();
-    renderPublicIssues();
-    renderAdminActivity();
-    
-    // Slight delay to ensure Chart.js is fully loaded from CDN
-    setTimeout(() => {
-        if(typeof Chart !== 'undefined') {
-            updateAdminCharts();
-        }
-    }, 500);
 });
