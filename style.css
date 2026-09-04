@@ -2,22 +2,22 @@
    VARIABLES & RESET
 ========================================= */
 :root {
-    /* Color Palette - Professional Academic */
-    --color-primary: #0F204B; /* Dark Blue */
-    --color-primary-light: #1A3673;
-    --color-secondary: #D4AF37; /* Gold */
-    --color-secondary-hover: #E8C550;
+    /* Color Palette - Black & White Monochrome */
+    --color-primary: #111111; /* Near Black */
+    --color-primary-light: #333333;
+    --color-secondary: #555555; /* Medium Gray accent */
+    --color-secondary-hover: #777777;
     
-    --color-bg: #F8F9FA;
+    --color-bg: #F5F5F5;
     --color-bg-alt: #FFFFFF;
-    --color-text: #212529;
-    --color-text-muted: #6C757D;
+    --color-text: #111111;
+    --color-text-muted: #666666;
     
-    --color-border: #E9ECEF;
-    --color-border-dark: #CED4DA;
+    --color-border: #E0E0E0;
+    --color-border-dark: #BDBDBD;
 
-    --color-success: #198754;
-    --color-danger: #DC3545;
+    --color-success: #333333;
+    --color-danger: #333333;
     
     /* Typography */
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -31,9 +31,9 @@
     --spacing-xl: 4rem;
     
     /* Shadows & Radii */
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
-    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.12);
     --radius-sm: 4px;
     --radius-md: 8px;
     
@@ -380,7 +380,7 @@ ul {
 
 .team-name:focus, 
 .team-desc:focus {
-    background-color: rgba(212, 175, 55, 0.05);
+    background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px dashed var(--color-secondary);
 }
 
@@ -1168,7 +1168,7 @@ ul {
 .podcast-ep-card.active {
     border-color: var(--color-primary);
     box-shadow: var(--shadow-sm);
-    background-color: rgba(15, 32, 75, 0.03);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .ep-thumb {
